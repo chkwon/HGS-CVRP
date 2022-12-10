@@ -2,9 +2,9 @@ name: CI_Build
 
 on:
   push:
-    branches: [ master, dev ]
+    branches: [ main, master, dev ]
   pull_request:
-    branches: [ master, dev ]
+    branches: [ main, master, dev ]
 
 jobs:
   build:
@@ -18,11 +18,13 @@ jobs:
       run: | 
         mkdir build 
         cd build
+        ls
         cmake .. -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles"
         make bin
     - name: test bin on ${{ matrix.os }}
       run: |
         cd build
+        ls
         ctest -R bin --verbose
     - name: make lib on ${{ matrix.os }}
       run: |
