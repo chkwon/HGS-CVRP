@@ -26,6 +26,7 @@ jobs:
         cd build
         ls
         ctest -R bin --verbose
+        ls
     - name: make lib on ${{ matrix.os }}
       run: |
         cd build
