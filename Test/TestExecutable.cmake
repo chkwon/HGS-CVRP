@@ -5,6 +5,8 @@ file(REMOVE mySolution.sol.PG.csv)
 
 # solve the given instance
 find_program(HGS_BIN NAMES hgs hgs.exe PATHS .)
+message("HGS_BIN........")
+message(${HGS_BIN})
 execute_process(
         COMMAND ${HGS_BIN} ../Instances/CVRP/${INSTANCE}.vrp mySolution.sol -seed 1 -round ${ROUND}
         RESULTS_VARIABLE result
