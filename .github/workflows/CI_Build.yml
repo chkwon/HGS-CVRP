@@ -2,9 +2,9 @@ name: CI_Build
 
 on:
   push:
-    branches: [ master, dev ]
+    branches: [ main, master, dev ]
   pull_request:
-    branches: [ master, dev ]
+    branches: [ main, master, dev ]
 
 jobs:
   build:
@@ -12,18 +12,24 @@ jobs:
     strategy:
       matrix:
         os: [ "ubuntu-latest", "windows-latest", "macos-latest" ]
+#         os: ["windows-latest"]
     steps:
     - uses: actions/checkout@v3
     - name: make bin on ${{ matrix.os }}
       run: | 
         mkdir build 
         cd build
+        ls
         cmake .. -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles"
         make bin
+        ls
+        ./hgs
     - name: test bin on ${{ matrix.os }}
       run: |
         cd build
+        ls
         ctest -R bin --verbose
+        ls
     - name: make lib on ${{ matrix.os }}
       run: |
         cd build
