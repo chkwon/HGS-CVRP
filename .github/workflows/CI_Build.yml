@@ -23,7 +23,7 @@ jobs:
         cmake .. -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles"
         make bin
         ls
-        hgs.exe
+        ./hgs
     - name: test bin on ${{ matrix.os }}
       run: |
         cd build
