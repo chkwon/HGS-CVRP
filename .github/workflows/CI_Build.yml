@@ -11,7 +11,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ "ubuntu-latest", "windows-latest", "macos-latest" ]
+#         os: [ "ubuntu-latest", "windows-latest", "macos-latest" ]
+        os: ["windows-latest"]
     steps:
     - uses: actions/checkout@v2
     - name: make bin on ${{ matrix.os }}
@@ -22,6 +23,7 @@ jobs:
         cmake .. -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles"
         make bin
         ls
+        hgs.exe
     - name: test bin on ${{ matrix.os }}
       run: |
         cd build
